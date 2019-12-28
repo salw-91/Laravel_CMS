@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Tag;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Post;
@@ -30,10 +31,11 @@ class HomeController extends Controller
         $users      = User::all();
         $posts      = Post::all();
         $categories = Category::all();
+        $tags       = Tag::all();
         $inbox      = Post::where('to', $user->id)->get();
         $send       = Post::where('from', $user->id)->get();
         $count      = Post::all()->where('to', Auth::user()->id);
-        
-        return view('home' , compact ('user','users', 'posts', 'categories', 'inbox', 'send', 'count'));
+
+        return view('home' , compact ('user','users', 'posts', 'categories','tags', 'inbox', 'send', 'count'));
     }
 }

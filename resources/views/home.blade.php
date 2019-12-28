@@ -24,8 +24,31 @@
                             Make Contact with admin.
                             <br>
                         @endif
-                        Hi {{$user->name}} ,You are logged in!
-                        <p>Last sign in at {{ auth()->user()->last_auth}}</p>
+                        <div class="container">
+                            <div class="row">
+                                <a class="bg-success col-sm" href="{{ route('home') }}">
+                                    <div style="font-size: 3em; color: white;">
+                                        <i class="light far fa-envelope"></i>
+                                        <p style="float: right">{{$posts->count()}}</p>
+                                    </div>
+                                </a>
+                                <div class="col-sm bg-primary" style="font-size: 3em; color: white;">
+                                    <i class="fas fa-list-ul"></i>
+                                    <p style="float: right">{{$categories->count()}}</p>
+                                </div>
+                                <div class="col-sm bg-danger" style="font-size: 3em; color: white;">
+                                    <i class="fas fa-tags"></i>
+                                    <p style="float: right">{{$tags->count()}}</p>
+                                </div>
+                                <div class="col-sm bg-info" style="font-size: 3em; color: white;">
+                                    <i class="fas fa-users"></i>
+                                    <p style="float: right">{{$user->count()}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{--                        Hi {{$user->name}} ,You are logged in!--}}
+                        {{--                        <p>Last sign in at {{ auth()->user()->last_auth}}</p>--}}
                     </div>
                 </div>
             </div>
