@@ -5,7 +5,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Dashboard</div>
-                    <div class="card-body">
+                    <div class="card-body p-0">
                         @if($errors->any())
                             <div style="text-align: center">
                                 <h1 class="btn btn-danger btn-lg text-center">{{$errors->first()}}</h1>
@@ -26,7 +26,7 @@
                         @endif
                         <div class="container">
                             <div class="row">
-                                <a class="bg-success col-sm" href="{{ route('home') }}">
+                                <a class="bg-success col-sm " href="{{ route('Posts') }}">
                                     <div style="font-size: 3em; color: white;">
                                         <i class="light far fa-envelope"></i>
                                         <p style="float: right">{{$posts->count()}}</p>
