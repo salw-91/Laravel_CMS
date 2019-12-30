@@ -32,14 +32,18 @@
                                         <p style="float: right">{{$posts->count()}}</p>
                                     </div>
                                 </a>
-                                <div class="col-sm bg-primary" style="font-size: 3em; color: white;">
-                                    <i class="fas fa-list-ul"></i>
-                                    <p style="float: right">{{$categories->count()}}</p>
-                                </div>
-                                <div class="col-sm bg-danger" style="font-size: 3em; color: white;">
-                                    <i class="fas fa-tags"></i>
-                                    <p style="float: right">{{$tags->count()}}</p>
-                                </div>
+                                <a class="bg-primary col-sm " href="{{ route('Categories') }}">
+                                    <div style="font-size: 3em; color: white;">
+                                        <i class="fas fa-list-ul"></i>
+                                        <p style="float: right">{{$categories->count()}}</p>
+                                    </div>
+                                </a>
+                                <a class="bg-danger col-sm " href="{{ route('Tags') }}">
+                                    <div style="font-size: 3em; color: white;">
+                                        <i class="fas fa-tags"></i>
+                                        <p style="float: right">{{$tags->count()}}</p>
+                                    </div>
+                                </a>
                                 <div class="col-sm bg-info" style="font-size: 3em; color: white;">
                                     <i class="fas fa-users"></i>
                                     <p style="float: right">{{$user->count()}}</p>
