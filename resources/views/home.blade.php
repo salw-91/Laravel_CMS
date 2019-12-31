@@ -44,10 +44,14 @@
                                         <p style="float: right">{{$tags->count()}}</p>
                                     </div>
                                 </a>
-                                <div class="col-sm bg-info" style="font-size: 3em; color: white;">
-                                    <i class="fas fa-users"></i>
-                                    <p style="float: right">{{$user->count()}}</p>
-                                </div>
+                                @if(Auth::user()->isAdmin == 1)
+                                    <a class="bg-info col-sm " href="{{ route('AdminRoles') }}">
+                                        <div style="font-size: 3em; color: white;">
+                                            <i class="fas fa-users-cog"></i>
+                                            <p style="float: right">{{$users->count()-1}}</p>
+                                        </div>
+                                    </a>
+                                @endif
                             </div>
                         </div>
 
@@ -59,56 +63,51 @@
         </div>
     </div>
     <br>
-    @if (count($posts))
+    @if (count($inbox)>0)
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">Your Inbox.
                             <span class="badge badge-pill badge-success">{{$number = count($count )}}</span>
-                            <button type="button" id="button" class="btn btn-danger float-right" onclick="myFunction()">
-                                X
-                            </button>
                         </div>
-                        <script>
-                            function myFunction() {
-                                var x = document.getElementById("myDIV");
-                                var button = document.getElementById("button");
-                                if (x.style.display === "none") {
-                                    x.style.display = "block";
-                                    button.styleclass = "btn btn-danger float-right";
-                                } else {
-                                    x.style.display = "none";
-                                }
-                            }
-                        </script>
-                        <table class="table" id="myDIV">
+
+                        <table class="table">
                             <thead>
                             <tr>
                                 <th scope="col">Post title.</th>
                                 <th scope="col">Post Content.</th>
                                 <th scope="col">Post Category.</th>
                                 <th scope="col">Post From.</th>
+                                <th scope="col">Delete</th>
                             </tr>
                             </thead>
                             <tbody>
 
                             @foreach ($posts as $post)
                                 @if($post->to == Auth::user()->id)
+{{--                                @dd($post->user);--}}
                                     <tr>
                                         <th scope="row">{{$post->title}}</th>
                                         <th scope="row">{{$post->content}}</th>
                                         <th scope="row">{{$post->category->name}}</th>
-                                        <th scope="row">{{$post->from}}</th>
-
-                                        @endif
-                                        @endforeach
+                                        <th scope="row">{{$post->fromuser->name}}</th>
+                                        <th scope="row">
+                                            <form action="{{ route('post.destroy', ['id'=>$post->id]) }}"
+                                                  class="float-left">
+                                                <button type="submit" class="btn btn-danger"><i
+                                                        class="far fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        </th>
                                     </tr>
+                                @endif
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-        </div>
-
         </div>
     @endif
 @endsection

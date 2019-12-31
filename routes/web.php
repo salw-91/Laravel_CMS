@@ -54,6 +54,5 @@ Route::get('/Tags', 'TagController@index')->name('Tags');
 Route::get('/Tags/store', 'TagController@store')->name('tag.store');
 Route::get('/Tags/destroy/{id}', 'TagController@destroy')->name('tag.destroy');
 
-// route for Users
-Route::get('/Users', 'UsersController@index')->name('Users')->middleware('admin');
+
 

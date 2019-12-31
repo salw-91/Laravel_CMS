@@ -71,12 +71,10 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $user = User::find($id);
         $user->name     = $request->input('name');
         $user->email    = $request->input('email');
-        $user->isAdmin  = $request->input('isAdmin');
-        $user->isActive = $request->input('isActive');
         $user->save();
         return redirect()->back();
     }

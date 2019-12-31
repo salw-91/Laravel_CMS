@@ -8,9 +8,9 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    public function posts()
+    public function post()
     {
-        return $this->hasMany('App\Post');
+        return $this->hasMany(Post::class);
     }
 
     use Notifiable;

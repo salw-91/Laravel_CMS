@@ -37,12 +37,12 @@
                                     <div class="card-header float-right text-center ">User</div>
                                     <div class="card-header float-right">
 
-                                        @foreach ($users as $user)
+                                        @foreach ($to as $to)
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" name="to" type="radio" id="user"
-                                                       value="{{$user->id}}">
+                                                       value="{{$to->id}}">
                                                 <label class="form-check-label"
-                                                       for="inlineCheckbox1">{{$user->name}}</label>
+                                                       for="inlineCheckbox1">{{$to->name}}</label>
                                             </div>
                                         @endforeach
                                     </div>
@@ -79,147 +79,150 @@
 
 
                 </div>
+                @if($posts->count() > 0)
+                    <div class="card">
+                        <div class="card-header mr-right">
+                            <button type="button" id="buttoninbox" class="btn btn-info float-right"
+                                    onclick="theFunction()">
+                                Inbox
+                            </button>
+                            <button type="button" id="buttonsend" class="btn btn-info float-right mr-2"
+                                    onclick="theFunction()">Send
+                            </button>
+                        </div>
+                        <script>
+                            function theFunction() {
 
-                <div class="card">
-                    <div class="card-header mr-right">Post.
-                        <button type="button" id="buttoninbox" class="btn btn-info float-right" onclick="theFunction()">
-                            Inbox
-                        </button>
-                        <button type="button" id="buttonsend" class="btn btn-info float-right mr-2"
-                                onclick="theFunction()">Send
-                        </button>
-                    </div>
-                    <script>
-                        function theFunction() {
-
-                            var buttoninbox = document.getElementById("buttoninbox");
-                            var buttonsend = document.getElementById("buttonsend");
-                            var inbox = document.getElementById("inbox");
-                            var send = document.getElementById("send");
-                            if (inbox.style.display === "none" && send.style.display === "block") {
-                                inbox.style.display = "block";
-                                send.style.display = "none";
-                                buttoninbox.style.display = "none";
-                                buttonsend.style.display = "block";
-                            } else {
-                                inbox.style.display = "none";
-                                send.style.display = "block";
-                                buttoninbox.style.display = "block";
-                                buttonsend.style.display = "none";
+                                var buttoninbox = document.getElementById("buttoninbox");
+                                var buttonsend = document.getElementById("buttonsend");
+                                var inbox = document.getElementById("inbox");
+                                var send = document.getElementById("send");
+                                var text = document.getElementById("text")
+                                if (inbox.style.display === "none" && send.style.display === "block") {
+                                    inbox.style.display = "block";
+                                    send.style.display = "none";
+                                    buttoninbox.style.display = "none";
+                                    buttonsend.style.display = "block";
+                                    text.valueOf("test");
+                                } else {
+                                    inbox.style.display = "none";
+                                    send.style.display = "block";
+                                    buttoninbox.style.display = "block";
+                                    buttonsend.style.display = "none";
+                                }
                             }
-                        }
 
-                    </script>
-                    <div class="row ml-6">
-                        <div class="col-md table" id="inbox" style="display: none">
-                            <table class="col-md-12 table">
-                                <thead>
-                                <tr>
-                                    {{--                        <th>Post id.</th>--}}
-                                    <th>Title</th>
-                                    <th>Content</th>
-                                    <th>From</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                @foreach ($inbox as $post)
+                        </script>
+                        <div class="row ml-6">
+                            <div class="col-md table" id="inbox" style="display: none">
+                                <table class="col-md-12 table">
+                                    <thead>
                                     <tr>
-                                        <th>{{$post->title}}</th>
-                                        <th>{{$post->content}}</th>
-                                        <th>{{$post->from}}</th>
-                                        {{-- <th>{{$post->category->name}}</th> --}}
-                                        <th>
-                                            <form action="{{ route('post.show', ['id'=>$post->id]) }}">
-                                                <button type="submit" class="btn btn-warning">
-                                                    <i class="far fa-eye"></i>
-                                                </button>
-                                            </form>
-                                        </th>
-                                        <th>
-                                            <form action="{{ route('post.edit', ['id'=>$post->id]) }}">
-                                                <button type="submit" class="btn btn-info">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                </button>
-                                            </form>
-                                        </th>
-                                        <th>
-                                            <form action="{{ route('post.destroy', ['id'=>$post->id]) }}"
-                                                  class="float-left">
-                                                <button type="submit" class="btn btn-danger"><i
-                                                        class="far fa-trash-alt"></i>
-                                                </button>
-                                            </form>
-                                        </th>
+                                        {{--                        <th>Post id.</th>--}}
+                                        <th>Title</th>
+                                        <th>Content</th>
+                                        <th>From</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
-                                @endforeach
+                                    </thead>
+                                    <tbody>
 
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-md table" id="send" style="display: none">
-                            <table class="col-md-12 table float-right">
-                                <thead>
-                                <tr>
+                                    @foreach ($inbox as $post)
+                                        <tr>
+                                            <th>{{$post->title}}</th>
+                                            <th>{{$post->content}}</th>
+                                            <th>{{$post->fromuser->name}}</th>
+                                            {{-- <th>{{$post->category->name}}</th> --}}
+                                            <th>
+                                                <form action="{{ route('post.show', ['id'=>$post->id]) }}">
+                                                    <button type="submit" class="btn btn-warning">
+                                                        <i class="far fa-eye"></i>
+                                                    </button>
+                                                </form>
+                                            </th>
+                                            <th>
+                                                <form action="{{ route('post.edit', ['id'=>$post->id]) }}">
+                                                    <button type="submit" class="btn btn-info">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                    </button>
+                                                </form>
+                                            </th>
+                                            <th>
+                                                <form action="{{ route('post.destroy', ['id'=>$post->id]) }}"
+                                                      class="float-left">
+                                                    <button type="submit" class="btn btn-danger"><i
+                                                            class="far fa-trash-alt"></i>
+                                                    </button>
+                                                </form>
+                                            </th>
+                                        </tr>
+                                    @endforeach
 
-                                    <th>Title</th>
-                                    <th>Content</th>
-                                    <th>To</th>
-                                    <th>Tags</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-
-                                <tbody>
-
-                                @foreach ($send as $post)
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md table" id="send" style="display: none">
+                                <table class="col-md-12 table float-right">
+                                    <thead>
                                     <tr>
-                                        <th>{{$post->title}}</th>
-                                        <th>{{$post->content}}</th>
-                                        <th>{{$post->user->name}}</th>
-                                        <th>
-                                            {{ count($post->tags) }}
 
-{{--                                            @foreach($post->tags as $tag)--}}
-{{--                                                {{$tag->name}}--}}
-{{--                                            @endforeach--}}
-
-                                        </th>
-
-                                        <th>
-                                            <form action="{{ route('post.show', ['id'=>$post->id]) }}">
-                                                <button type="submit" class="btn btn-warning">
-                                                    <i class="far fa-eye"></i>
-                                                </button>
-                                            </form>
-                                        </th>
-                                        <th>
-                                            <form action="{{ route('post.edit', ['id'=>$post->id]) }}">
-                                                <button type="submit" class="btn btn-info">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                </button>
-                                            </form>
-                                        </th>
-                                        <th>
-                                            <form action="{{ route('post.destroy', ['id'=>$post->id]) }}">
-                                                <button type="submit" class="btn btn-danger">
-                                                    <i class="far fa-trash-alt"></i>
-                                                </button>
-                                            </form>
-                                        </th>
+                                        <th>Title</th>
+                                        <th>Content</th>
+                                        <th>To</th>
+                                        <th>Tags</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
 
+                                    <tbody>
+
+                                    @foreach ($send as $post)
+                                        <tr>
+                                            <th>{{$post->title}}</th>
+                                            <th>{{$post->content}}</th>
+                                            <th>{{$post->touser->name}}</th>
+                                            <th>
+                                                {{ count($post->tags) }}
+
+                                                {{--                                            @foreach($post->tags as $tag)--}}
+                                                {{--                                                {{$tag->name}}--}}
+                                                {{--                                            @endforeach--}}
+
+                                            </th>
+
+                                            <th>
+                                                <form action="{{ route('post.show', ['id'=>$post->id]) }}">
+                                                    <button type="submit" class="btn btn-warning">
+                                                        <i class="far fa-eye"></i>
+                                                    </button>
+                                                </form>
+                                            </th>
+                                            <th>
+                                                <form action="{{ route('post.edit', ['id'=>$post->id]) }}">
+                                                    <button type="submit" class="btn btn-info">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                    </button>
+                                                </form>
+                                            </th>
+                                            <th>
+                                                <form action="{{ route('post.destroy', ['id'=>$post->id]) }}">
+                                                    <button type="submit" class="btn btn-danger">
+                                                        <i class="far fa-trash-alt"></i>
+                                                    </button>
+                                                </form>
+                                            </th>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                                @endif
+                            </div>
                         </div>
                     </div>
-                </div>
 
             </div>
         </div>

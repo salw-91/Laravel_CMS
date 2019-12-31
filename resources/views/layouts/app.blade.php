@@ -44,12 +44,11 @@
 
                     @else
                         <a class="btn btn-info mr-2" href="{{ route('home') }}"><i class="fas fa-home"></i></a>
-                        <a class="btn btn-info mr-2" href="{{ route('Posts') }}">Posts <i
-                                class="far fa-envelope"></i></a>
-                        <a class="btn btn-info mr-2" href="{{ route('Categories') }}">Categorie <i
-                                class="fas fa-list-ul"></i></a>
-                        <a class="btn btn-info mr-2" href="{{ route('Tags') }}">Tag <i class="fas fa-tags"></i></a>
-                        <a class="btn btn-info mr-2" href="{{ route('Users') }}">Users <i class="fas fa-users"></i></a>
+{{--                        <a class="btn btn-info mr-2" href="{{ route('Posts') }}">Posts <i--}}
+{{--                                class="far fa-envelope"></i></a>--}}
+{{--                        <a class="btn btn-info mr-2" href="{{ route('Categories') }}">Categorie <i--}}
+{{--                                class="fas fa-list-ul"></i></a>--}}
+{{--                        <a class="btn btn-info mr-2" href="{{ route('Tags') }}">Tag <i class="fas fa-tags"></i></a>--}}
                 @endif
 
             @endauth
@@ -76,12 +75,6 @@
                             @if (Auth::user()->isActive == 1)
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('profiles') }}">Profile</a>
-
-                                    @if (Auth::user()->isAdmin == '1' )
-                                        <a class="dropdown-item" href="{{ route('AdminRoles') }}">Admin Role <i
-                                                class="fas fa-crown"></i></a>
-                                    @endif
-
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">

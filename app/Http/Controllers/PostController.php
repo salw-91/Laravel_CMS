@@ -17,10 +17,11 @@ class PostController extends Controller
     public function index()
     {
         $user           = Auth::user();
-        if ($user->count() == 1){
-            return redirect()->route('home')->withErrors(['There is only one account, you cannot make Post.', 'The Message']);
+        $users           = User::all();
+        if ($users->count() == 1){
+            return redirect()->route('home')->withErrors(['There is only one account, you can not make Post.', 'The Message']);
         }
-        $users          = User::all()->where('id' ,'!=', Auth::user()->id);
+        $to          = User::all()->where('id' ,'!==', Auth::user()->id);
         $categories     = Category::all();
         if ($categories->count() == 0) {
             return redirect()->route('Categories');
@@ -34,7 +35,7 @@ class PostController extends Controller
             return redirect()->route('Tags') ;
         }
 
-        return view('post.index' , compact('user','users', 'categories', 'posts', 'inbox', 'send', 'receivedName', 'tags'));
+        return view('post.index' , compact('user','users' , 'to', 'categories', 'posts', 'inbox', 'send', 'receivedName', 'tags'));
     }
 
     /**
@@ -62,7 +63,7 @@ class PostController extends Controller
             'Message'       => 'required',
             'category_id'   => 'required',
             'to'            => 'required',
-            'tags'          => 'required',
+            'tags'          => ['required' , 'Nullable'],
         ]);
 
         // Post::create($data);

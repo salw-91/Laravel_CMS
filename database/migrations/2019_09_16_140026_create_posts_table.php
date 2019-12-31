@@ -18,11 +18,11 @@ class CreatePostsTable extends Migration
             $table->string("title");
             $table->string("content");
             $table->integer("category_id");
-//            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->integer('to');
-//            $table->foreign('to')->references('id')->on('users');
+            $table->foreign('to')->references('id')->on('users');
             $table->integer('from');
-//            $table->foreign('from')->references('id')->on('users');
+            $table->foreign('from')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -8,10 +8,13 @@ class Post extends Model
 {
     protected $fillable= ['title', 'content', 'category_id', 'from', 'to'];
 
-    public function user()
+    public function fromuser()
     {
-//        return $this->belongsTo('App\User');
-        return $this->belongsTo(User::class,'to');
+        return $this->belongsTo(User::class, 'from');
+    }
+    public function touser()
+    {
+        return $this->belongsTo(User::class, 'to');
     }
 
     public function category()
@@ -21,8 +24,6 @@ class Post extends Model
 
     public function tags()
     {
-//        return $this->belongsToMany('App\Tag');
         return $this->belongsToMany(Tag::class,'post_tag');
-
     }
 }
