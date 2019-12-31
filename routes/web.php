@@ -24,7 +24,7 @@ Auth::routes();
 
 // route for Profile
 Route::get('/profiles', 'ProfileController@index')->name('profiles');
-Route::get('/profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
+Route::post('/profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
 Route::get('/profile/update/{id}', 'ProfileController@update')->name('profile.update');
 Route::get('/profile/destroy/{id}', 'profileController@destroy')->name('profile.destroy');
 
