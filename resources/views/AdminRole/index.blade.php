@@ -35,7 +35,7 @@
                                     <th>Not Active</th>
                                 @endif
                                 <th>
-                                    <form action="{{ route('profile.edit', ['id'=>$user->id]) }}">
+                                    <form action="{{ route('AdminRole.edit', ['id' => $user->id]) }}">
                                         <button type="submit" class="btn btn-info"><i class="fas fa-pencil-alt"></i>
                                         </button>
                                     </form>

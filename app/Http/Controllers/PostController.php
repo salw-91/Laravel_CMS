@@ -18,7 +18,7 @@ class PostController extends Controller
     {
         $user           = Auth::user();
         $users           = User::all();
-        if ($users->count() == 1){
+        if ($users->count() <= 1){
             return redirect()->route('home')->withErrors(['There is only one account, you can not make Post.', 'The Message']);
         }
         $to          = User::all()->where('id' ,'!==', Auth::user()->id);
@@ -66,7 +66,6 @@ class PostController extends Controller
             'tags'          => ['required' , 'Nullable'],
         ]);
 
-        // Post::create($data);
         $data=Post::create([
             'title'         => $request->title,
             'content'       => $request->Message,

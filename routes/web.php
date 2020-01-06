@@ -24,13 +24,14 @@ Auth::routes();
 
 // route for Profile
 Route::get('/profiles', 'ProfileController@index')->name('profiles');
-Route::post('/profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
+Route::get('/profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
 Route::get('/profile/update/{id}', 'ProfileController@update')->name('profile.update');
 Route::get('/profile/destroy/{id}', 'profileController@destroy')->name('profile.destroy');
 
 // route for Admin Role.
 Route::get('/AdminRoles', 'AdminRoleController@index')->name('AdminRoles');
-Route::get('/AdminRoles/edit', 'AdminRoleController@edit')->name('AdminRole.edit');
+Route::get('/AdminRoles/edit/{id}', 'AdminRoleController@edit')->name('AdminRole.edit');
+Route::get('/AdminRoles/update/{id}', 'AdminRoleController@update')->name('AdminRole.update');
 
 // route for Post.
 Route::get('/Post', 'PostController@index')->name('Posts');

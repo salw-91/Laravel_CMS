@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,9 @@ class AdminRoleController extends Controller
     public function index()
     {
         $users = User::all()->where('id', '!==', Auth::user()->id);
+        if ($users->count() == 0) {
+            return redirect()->route('home')->withErrors(['There is no user.', 'The Message']);
+        }
         return view('AdminRole.index')->with(['users' => $users]);
     }
 
@@ -32,7 +36,7 @@ class AdminRoleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -43,7 +47,7 @@ class AdminRoleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -54,32 +58,38 @@ class AdminRoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //$user = Auth::user();
+        $user = User::find($id);
 
-        // return view('profiles.edit' , ['user'=> $user]);
+        return view('AdminRole.edit')->with(['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->name =$request->input('name');
+        $user->email =$request->input('email');
+        $user->isAdmin =$request->input('isAdmin');
+        $user->isActive =$request->input('isActive');
+        $user->save();
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

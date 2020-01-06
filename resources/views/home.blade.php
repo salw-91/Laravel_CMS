@@ -6,18 +6,11 @@
                 <div class="card">
                     <div class="card-header">Dashboard</div>
                     <div class="card-body p-0">
-                        @if($errors->any())
-                            <div style="text-align: center">
-                                <h1 class="btn btn-danger btn-lg text-center">{{$errors->first()}}</h1>
-                            </div>
-                        @endif
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
                             </div>
                         @endif
-                        {{-- {{ dd($user)}} --}}
-
                         @if (Auth::user()->isActive == 0)
                             Your account is not active.
                             <br>
@@ -54,16 +47,18 @@
                                 @endif
                             </div>
                         </div>
-
-                        {{--                        Hi {{$user->name}} ,You are logged in!--}}
-                        {{--                        <p>Last sign in at {{ auth()->user()->last_auth}}</p>--}}
                     </div>
+                    @if($errors->any())
+                        <div class="m-2" style="text-align: center; color: white;">
+                            <h4 class="bg-danger text-center">{{$errors->first()}}</h4>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
     <br>
-    @if (count($inbox)>0)
+    @if (count($inbox) > 0)
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -86,7 +81,7 @@
 
                             @foreach ($posts as $post)
                                 @if($post->to == Auth::user()->id)
-{{--                                @dd($post->user);--}}
+                                    {{--                                @dd($post->user);--}}
                                     <tr>
                                         <th scope="row">{{$post->title}}</th>
                                         <th scope="row">{{$post->content}}</th>

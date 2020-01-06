@@ -6,18 +6,9 @@
             <div class="col-md-8">
                 <div class="card mb-2">
                     <div class="card-header">Create Tag.
-                        <button type="submit" class="btn btn-success float-right" onclick="myFunction()"><i class="fas fa-plus"></i></button>
+                        <button type="submit" class="btn btn-success float-right" onclick="myFunction()"><i
+                                class="fas fa-plus"></i></button>
                     </div>
-                    <script>
-                        function myFunction() {
-                            var x = document.getElementById("myDIV");
-                            if (x.style.display === "none") {
-                                x.style.display = "block";
-                            } else {
-                                x.style.display = "none";
-                            }
-                        }
-                    </script>
                     @if(count($errors)>0)
                         <ul class="navbar-nav mr-auto">
                             @foreach($errors->all() as $error)
@@ -28,7 +19,8 @@
                         </ul>
                     @endif
 
-                    <form action="{{route('tag.store')}}" method="get" enctype="multipart/form-data" id="myDIV" style="display:none">
+                    <form action="{{route('tag.store')}}" method="get" enctype="multipart/form-data" id="myDIV"
+                          style="display:none">
                         {{ csrf_field()}}
                         <div class="row">
                             <div class="col-md-4 m-3">
@@ -45,20 +37,20 @@
                     </form>
                 </div>
 
-                <div class="card">
-                <div class="card-header mr-right">Tag.</div>
+                @foreach ($tags as $tag)
+                    <div class="card">
+                        <div class="card-header mr-right">Tag.</div>
 
 
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th class="col-md-10">Tag Name</th>
-                            <th>Update</th>
-                            <th>Delete</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($tags as $tag)
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="col-md-10">Tag Name</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
                             <tr>
                                 <th scope="row">{{$tag->name}}</th>
 
@@ -75,10 +67,10 @@
                                     </form>
                                 </th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
             </div>
         </div>
     </div>

@@ -20,10 +20,8 @@
                                 <th><i class="far fa-user"> User</i></th>
                             @else
                                 <th><i class="fas fa-users-cog"> Admin</i></th>
+                                <br>
 
-                                <br>
-                                <label for="isAdmin">{{ __('Admin???') }}</label>
-                                <br>
                                 @if (Auth::user()->isAdmin == 0)
                                     <input type="radio" id="isAdmin0" name="isAdmin" value="0" checked> No<br>
                                     <input type="radio" id="isAdmin1" name="isAdmin" value="1"> Yes<br>
@@ -31,6 +29,7 @@
                                     <input type="radio" id="isAdmin0" name="isAdmin" value="0"> No<br>
                                     <input type="radio" id="isAdmin1" name="isAdmin" value="1" checked> Yes<br>
                                 @endif
+
                                 <br>
                                 {{-- isActive --}}
                                 @if (Auth::user()->isActive == 0)
