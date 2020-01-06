@@ -9,7 +9,6 @@
                         <button type="submit" class="btn btn-success float-right" onclick="myFunction()"><i
                                 class="fas fa-plus"></i></button>
                     </div>
-
                     @if(count($errors)>0)
                         <ul class="navbar-nav mr-auto">
                             @foreach($errors->all() as $error)
@@ -19,7 +18,6 @@
                             @endforeach
                         </ul>
                     @endif
-
                     <form action="{{route('categorie.store')}}" method="get" enctype="multipart/form-data" id="myDIV"
                           style="display:none">
                         {{ csrf_field()}}
@@ -37,12 +35,9 @@
                         </div>
                     </form>
                 </div>
-
-                @foreach ($categories as $category)
+                @if($categories->count() > 0)
                     <div class="card">
                         <div class="card-header mr-right">Categorie.</div>
-
-
                         <table class="table">
                             <thead>
                             <tr>
@@ -51,27 +46,29 @@
                                 <th>Delete</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">{{$category->name}}</th>
-
-                                <th>
-                                    <form action="{{ route('categorie.edit', ['id'=>$category->id]) }}">
-                                        <button type="submit" class="btn btn-info"><i class="fas fa-pencil-alt"></i>
-                                        </button>
-                                    </form>
-                                </th>
-                                <th>
-                                    <form action="{{ route('categorie.destroy', ['id'=>$category->id]) }}">
-                                        <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i>
-                                        </button>
-                                    </form>
-                                </th>
-                            </tr>
-                            @endforeach
-                            </tbody>
+                            @foreach ($categories as $category)
+                                <tbody>
+                                <tr>
+                                    <th scope="row">{{$category->name}}</th>
+                                    <th>
+                                        <form action="{{ route('categorie.edit', ['id'=>$category->id]) }}">
+                                            <button type="submit" class="btn btn-info"><i class="fas fa-pencil-alt"></i>
+                                            </button>
+                                        </form>
+                                    </th>
+                                    <th>
+                                        <form action="{{ route('categorie.destroy', ['id'=>$category->id]) }}">
+                                            <button type="submit" class="btn btn-danger"><i
+                                                    class="far fa-trash-alt"></i>
+                                            </button>
+                                        </form>
+                                    </th>
+                                </tr>
+                                @endforeach
+                                </tbody>
                         </table>
                     </div>
+                @endif
             </div>
         </div>
     </div>

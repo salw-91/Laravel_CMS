@@ -14,11 +14,9 @@
 
                                 <th>Title</th>
                                 <th>Content</th>
-                                <th>category</th>
-                                <th>to</th>
-                                <th>from</th>
-                                <th>created_at</th>
-                                <th>updated_at</th>
+                                <th>Category</th>
+                                <th>To</th>
+                                <th>From</th>
                                 <th>Tag</th>
 
                             </tr>
@@ -28,10 +26,9 @@
                                         <th>{{$post->title}}</th>
                                         <th>{{$post->content}}</th>
                                         <th>{{$post->category->name}}</th>
-                                        <th>{{$post->user->name}}</th>
-                                        <th>{{Auth::user()->name}}</th>
-                                        <th>{{$post->created_at}}</th>
-                                        <th>{{$post->updated_at}}</th>
+                                        <th>{{$post->fromuser->name}}</th>
+                                        <th>{{$post->touser->name}}</th>
+
                                         <th>
                                             @foreach($post->tags as $tag)
                                                 {{$tag->name}}

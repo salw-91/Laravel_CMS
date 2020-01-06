@@ -63,7 +63,7 @@ class PostController extends Controller
             'Message'       => 'required',
             'category_id'   => 'required',
             'to'            => 'required',
-            'tags'          => ['required' , 'Nullable'],
+//            'tags'          => ['required' , 'Nullable'],
         ]);
 
         $data=Post::create([
