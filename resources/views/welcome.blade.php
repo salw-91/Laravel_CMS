@@ -3,7 +3,7 @@
     <div class="flex-center ">
         <div class="content">
             <div class="title m-b-md">
-                Salwan1
+                Salwan
             </div>
         </div>
     </div>
