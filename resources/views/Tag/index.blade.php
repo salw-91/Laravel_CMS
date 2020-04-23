@@ -36,30 +36,20 @@
                         </div>
                     </form>
                 </div>
-
-                @foreach ($tags as $tag)
                     <div class="card">
                         <div class="card-header mr-right">Tag.</div>
 
-
+                @foreach ($tags as $tag)
                         <table class="table">
                             <thead>
                             <tr>
                                 <th class="col-md-10">Tag Name</th>
-                                <th>Update</th>
                                 <th>Delete</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <th scope="row">{{$tag->name}}</th>
-
-                                <th>
-                                    {{-- <form action="{{ route('tag.edit', ['id'=>$tag->id]) }}">
-                                        <button type="submit" class="btn btn-info"><i class="fas fa-pencil-alt"></i>
-                                        </button>
-                                    </form> --}}
-                                </th>
                                 <th>
                                     <form action="{{ route('tag.destroy', ['id'=>$tag->id]) }}">
                                         <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i>

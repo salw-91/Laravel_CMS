@@ -3,7 +3,10 @@
     <div class="flex-center ">
         <div class="content">
             <div class="title m-b-md">
-                Salwan
+                HI
+                @auth()
+                    {{$user->name}}
+                @endauth
             </div>
         </div>
     </div>

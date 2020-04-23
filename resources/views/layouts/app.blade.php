@@ -44,11 +44,6 @@
 
                     @else
                         <a class="btn btn-info mr-2" href="{{ route('home') }}"><i class="fas fa-home"></i></a>
-{{--                        <a class="btn btn-info mr-2" href="{{ route('Posts') }}">Posts <i--}}
-{{--                                class="far fa-envelope"></i></a>--}}
-{{--                        <a class="btn btn-info mr-2" href="{{ route('Categories') }}">Categorie <i--}}
-{{--                                class="fas fa-list-ul"></i></a>--}}
-{{--                        <a class="btn btn-info mr-2" href="{{ route('Tags') }}">Tag <i class="fas fa-tags"></i></a>--}}
                 @endif
 
             @endauth
@@ -111,9 +106,7 @@
     </main>
 </div>
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ ('js/Show.js') }}"></script>
 

@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">Show pots.</div>
                     <div class="card-body">
-                        <table class="col-md-12 table float-right">
+                        <table class="col-md-12 table">
                             <thead>
                             <tr>
                                 <th>Title</th>
@@ -24,7 +24,6 @@
                             <th>{{$post->category->name}}</th>
                             <th>{{$post->fromuser->name}}</th>
                             <th>{{$post->touser->name}}</th>
-
                             <th>
                                 @foreach($post->tags as $tag)
                                     {{$tag->name}}

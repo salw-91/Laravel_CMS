@@ -107,6 +107,7 @@ class PostController extends Controller
         $post       = Post::find($id);
         $tags       = Tag::all();
         $tag        = Tag::find($id);
+//        dd($tag);
         $users      = User::all();
         $user       = User::find($id);
 
@@ -118,7 +119,7 @@ class PostController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -126,11 +127,10 @@ class PostController extends Controller
         $post->title        = $request->input('title');
         $post->content      = $request->input('content');
         $post->category_id  = $request->input('category_id');
-        $post->from         = $request->input('from');
         $post->to           = $request->input('to');
         $post->tags         = $request->input('tags');
         $post->save();
-        return redirect()->route('Posts');
+        return redirect()->back();
     }
 
     /**

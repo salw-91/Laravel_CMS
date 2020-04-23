@@ -4,7 +4,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Dashboard</div>
+                    <div class="card-header pb-0">Dashboard
+                        @if(Auth::user()->last_auth) <p class="float-right">Your last login:{{Auth::user()->last_auth}}</p> @endif
+                    </div>
                     <div class="card-body p-0">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
@@ -12,41 +14,42 @@
                             </div>
                         @endif
                         @if (Auth::user()->isActive == 0)
-                            Your account is not active.
+                            <div class="m-2" style="text-align: center; color: white;">
+                                <h4 class="bg-danger text-center">Your account is not active,
+                                    Make Contact with admin.</h4>
+                            </div>
                             <br>
-                            Make Contact with admin.
-                            <br>
-                        @endif
-                        <div class="container">
-                            <div class="row">
-                                <a class="bg-success col-sm " href="{{ route('Posts') }}">
-                                    <div style="font-size: 3em; color: white;">
-                                        <i class="light far fa-envelope"></i>
-                                        <p style="float: right">{{$posts->count()}}</p>
-                                    </div>
-                                </a>
-                                <a class="bg-primary col-sm " href="{{ route('Categories') }}">
-                                    <div style="font-size: 3em; color: white;">
-                                        <i class="fas fa-list-ul"></i>
-                                        <p style="float: right">{{$categories->count()}}</p>
-                                    </div>
-                                </a>
-                                <a class="bg-danger col-sm " href="{{ route('Tags') }}">
-                                    <div style="font-size: 3em; color: white;">
-                                        <i class="fas fa-tags"></i>
-                                        <p style="float: right">{{$tags->count()}}</p>
-                                    </div>
-                                </a>
-                                @if(Auth::user()->isAdmin == 1)
-                                    <a class="bg-info col-sm " href="{{ route('AdminRoles') }}">
+                        @else
+                            <div class="container">
+                                <div class="row">
+                                    <a class="bg-success col-sm " href="{{ route('Posts') }}">
                                         <div style="font-size: 3em; color: white;">
-                                            <i class="fas fa-users-cog"></i>
-                                            <p style="float: right">{{$users->count()-1}}</p>
+                                            <i class="light far fa-envelope"></i>
+                                            <p style="float: right">{{$posts->count()}}</p>
                                         </div>
                                     </a>
-                                @endif
+                                    <a class="bg-primary col-sm " href="{{ route('Categories') }}">
+                                        <div style="font-size: 3em; color: white;">
+                                            <i class="fas fa-list-ul"></i>
+                                            <p style="float: right">{{$categories->count()}}</p>
+                                        </div>
+                                    </a>
+                                    <a class="bg-danger col-sm " href="{{ route('Tags') }}">
+                                        <div style="font-size: 3em; color: white;">
+                                            <i class="fas fa-tags"></i>
+                                            <p style="float: right">{{$tags->count()}}</p>
+                                        </div>
+                                    </a>
+                                    @if(Auth::user()->isAdmin == 1)
+                                        <a class="bg-info col-sm " href="{{ route('AdminRoles') }}">
+                                            <div style="font-size: 3em; color: white;">
+                                                <i class="fas fa-users-cog"></i>
+                                                <p style="float: right">{{$users->count()-1}}</p>
+                                            </div>
+                                        </a>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
                     </div>
                     @if($errors->any())
                         <div class="m-2" style="text-align: center; color: white;">
@@ -104,5 +107,7 @@
                 </div>
             </div>
         </div>
+    @endif
+
     @endif
 @endsection
